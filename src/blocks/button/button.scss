@@ -1,0 +1,194 @@
+.wp-block-my-extra-blocks-button {
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: var(--meb-button-border-width);
+
+  // Color scheme
+
+  &.is-meb-color-preset {
+
+    &-custom {
+      --color: var(--custom-color);
+      --bg-color: var(--custom-bg-color);
+      --border-color: var(--custom-border-color);
+      --gradient: var(--custom-gradient);
+    }
+
+    &-default {
+      --color: var(--meb-color-scheme-default-color);
+      --bg-color: var(--meb-color-scheme-default-bg-color);
+      --border-color: var(--meb-color-scheme-default-border-color);
+      --gradient: var(--custom-gradient);
+    }
+
+    &-primary {
+      --color: var(--meb-color-scheme-primary-color);
+      --bg-color: var(--meb-color-scheme-primary-bg-color);
+      --border-color: var(--meb-color-scheme-primary-border-color);
+      --gradient: var(--custom-gradient);
+    }
+
+    &-secondary {
+      --color: var(--meb-color-scheme-secondary-color);
+      --bg-color: var(--meb-color-scheme-secondary-bg-color);
+      --border-color: var(--meb-color-scheme-secondary-border-color);
+      --gradient: var(--custom-gradient);
+    }
+
+    &-strong {
+      --color: var(--meb-color-scheme-strong-color);
+      --bg-color: var(--meb-color-scheme-strong-bg-color);
+      --border-color: var(--meb-color-scheme-strong-border-color);
+      --gradient: var(--custom-gradient);
+    }
+
+    &-emphasis {
+      --color: var(--meb-color-scheme-emphasis-color);
+      --bg-color: var(--meb-color-scheme-emphasis-bg-color);
+      --border-color: var(--meb-color-scheme-emphasis-border-color);
+      --gradient: var(--custom-gradient);
+
+      &.is-meb-button-style-outline {
+        color: var(--meb-color-scheme-emphasis-border-color);
+        border-color: var(--meb-color-scheme-emphasis-border-color);
+      }
+    }
+
+    &-inverse {
+      --color: var(--meb-color-scheme-inverse-color);
+      --bg-color: var(--meb-color-scheme-inverse-bg-color);
+      --border-color: var(--meb-color-scheme-inverse-border-color);
+      --gradient: var(--custom-gradient);
+    }
+  }
+
+  &:hover, &:active, &:focus {
+    color: var(--color);
+  }
+
+  // Effects
+
+  background-image: var(--gradient);
+
+  &.is-meb-has-shadow {
+    box-shadow: var(--meb-button-shadow);
+  }
+
+  // Typography
+
+  font-family: var(--font-family);
+  font-feature-settings: var(--font-feature);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  line-height: var(--line-height);
+  letter-spacing: var(--letter-spacing);
+
+  &:not(:root) {
+    text-decoration: none;
+
+    // Margin
+
+    margin-top: var(--margin-top);
+    margin-right: var(--margin-right);
+    margin-bottom: var(--margin-bottom);
+    margin-left: var(--margin-left);
+  }
+
+  // Style
+
+  &.is-meb-button-style {
+    &-filled {
+      background-color: var(--bg-color);
+      border-color: var(--border-color);
+      border-width: 0;
+      color: var(--color);
+    }
+
+    &-thick {
+      background-color: var(--bg-color);
+      border-bottom-style: solid;
+      border-color: var(--border-color);
+      border-width: 0 0 var(--meb-button-thick-border-width) 0;
+      color: var(--color);
+    }
+
+    &-outline {
+      --gradient: none;
+      background: transparent;
+      border-style: solid;
+      border-color: var(--bg-color) ;
+      border-width: var(--meb-button-outline-border-width);
+      box-shadow: none;
+      color: var(--bg-color);
+    }
+  }
+
+  // Shape
+
+  &.is-meb-shape {
+    &-rounded {
+      border-radius: var(--meb-button-rounded);
+    }
+
+    &-pill {
+      border-radius: var(--meb-button-pill);
+    }
+  }
+
+  // Size
+
+  &.is-meb-size {
+    &-xs {
+      padding: var(--meb-button-padding-xs);
+    }
+
+    &-sm {
+      padding: var(--meb-button-padding-sm);
+    }
+
+    &-md {
+      padding: var(--meb-button-padding-md);
+    }
+
+    &-lg {
+      padding: var(--meb-button-padding-lg);
+    }
+
+    &-xl {
+      padding: var(--meb-button-padding-xl);
+    }
+  }
+
+  // Display
+
+  &.is-meb-display {
+    &-block {
+      display: block;
+    }
+
+    &-inline {
+      display: inline-block;
+    }
+  }
+
+  // Children
+
+  &__stack {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__text {
+    margin-left: var(--meb-icon-gap);
+    margin-right: var(--meb-icon-gap);
+    text-align: center;
+  }
+
+  &__icon-before,
+  &__icon-after {
+    display: inline-block;
+    height: 1em;
+    vertical-align: middle;
+  }
+}

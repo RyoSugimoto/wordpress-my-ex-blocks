@@ -1,0 +1,16 @@
+.eb {
+  // Block alignment
+
+  &-align-center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  // Typography
+
+  &-font-proportional {
+    font-feature-settings: "palt";
+  }
+
+  
+}

@@ -1,0 +1,47 @@
+.wp-block-my-extra-blocks-rich-text {
+  // Typography
+
+  font-family: var(--font-family);
+  font-feature-settings: var(--font-feature);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  line-height: var(--line-height);
+  letter-spacing: var(--letter-spacing);
+  text-align: var(--text-align);
+
+  // Color
+
+  color: var(--color);
+
+  // Content
+
+  &__content {
+    background-color: var(--bg-color);
+    background-image: var(--gradient);
+    display: block;
+
+    // Text gradient
+
+    .is-meb-text-clip > & {
+      background-clip: text;
+      text-fill-color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+
+    // Cushion
+
+    .is-meb-cushion > & {
+      background-repeat: no-repeat;
+      display: inline;
+      padding: .25em;
+      box-decoration-break: clone;
+    }
+  }
+
+  // Margin
+
+  &:not(:root) {
+    margin-top: var(--margin-top);
+    margin-bottom: var(--margin-bottom);
+  }
+}

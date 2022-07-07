@@ -1,0 +1,7 @@
+@use './settings';
+
+@mixin over($width) {
+  @media only screen and (min-width: map-get(settings.$screen-widths, $width)) {
+    @content;
+  }
+}

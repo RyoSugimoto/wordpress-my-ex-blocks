@@ -1,0 +1,136 @@
+@use './settings.scss' as *;
+
+:root {
+
+  // Space
+
+  @for $i from 0 through 200 {
+    --meb-space-#{$i}: #{$i * .125rem};
+  }
+
+  // Width
+
+  --meb-screen-width-xs: #{map-get($screen-widths, xs)};
+  --meb-screen-width-sm: #{map-get($screen-widths, sm)};
+  --meb-screen-width-md: #{map-get($screen-widths, md)};
+  --meb-screen-width-lg: #{map-get($screen-widths, lg)};
+  --meb-screen-width-xl: #{map-get($screen-widths, xl)};
+  --meb-screen-width-2xl: #{map-get($screen-widths, 2xl)};
+
+  // Border
+
+  @for $i from 0 through 50 {
+    --meb-border-width-#{$i}: #{$i * 0.0625rem};
+  }
+
+  // Border radius
+
+  @for $i from 0 through 50 {
+    --meb-border-radius-#{$i}: #{$i * 0.25rem};
+  }
+
+  // Font family
+
+  --meb-font-inherit: inherit;
+  --meb-font-sans: sans-serif;
+  --meb-font-serif: serif;
+  --meb-font-display: sans-serif;
+  --meb-font-cursive: cursive;
+  --meb-font-jp-gothic: sans-serif;
+  --meb-font-jp-mincho: serif;
+
+  // Font size
+
+  @for $i from 0 through 64 {
+    --meb-font-size-#{$i}: #{$i * .125rem};
+  }
+
+  // Font weight
+
+  --meb-font-weight-light: 200;
+  --meb-font-weight-normal: 500;
+  --meb-font-weight-bold: 700;
+
+  // Letter spacing
+
+  @for $i from -10 through 20 {
+    --meb-letter-spacing-#{$i * 50}: #{$i * 50 * 0.001em};
+  }
+
+  // Font feature setting
+
+  --meb-font-feature-default: "";
+  --meb-font-feature-proportional: "palt";
+
+  // Color scheme
+
+  --meb-color-scheme-inverse-color: #222222;
+  --meb-color-scheme-inverse-bg-color: #ffffff;
+  --meb-color-scheme-inverse-border-color: #eeeeee;
+
+  --meb-color-scheme-default-color: #ffffff;
+  --meb-color-scheme-default-bg-color: #222222;
+  --meb-color-scheme-default-border-color: #000000;
+
+  --meb-color-scheme-primary-color: #ffffff;
+  --meb-color-scheme-primary-bg-color: #669922;
+  --meb-color-scheme-primary-border-color: #446611;
+
+  --meb-color-scheme-secondary-color: #ffffff;
+  --meb-color-scheme-secondary-bg-color: #1166aa;
+  --meb-color-scheme-secondary-border-color: #115588;
+
+  --meb-color-scheme-strong-color: #ffffff;
+  --meb-color-scheme-strong-bg-color: #bb3344;
+  --meb-color-scheme-strong-border-color: #881122;
+
+  --meb-color-scheme-emphasis-color: #443311;
+  --meb-color-scheme-emphasis-bg-color: #ffdd11;
+  --meb-color-scheme-emphasis-border-color: #cc8811;
+
+  // Icon
+
+  --meb-icon-width: 1em;
+  --meb-icon-height: auto;
+  --meb-icon-fill: none;
+  --meb-icon-stroke: currentColor;
+  --meb-icon-stroke-width: 1.75px;
+  --meb-icon-stroke-linecap: round;
+  --meb-icon-stroke-linejoin: round;
+  --meb-icon-gap: .25em;
+
+  // Button
+
+  --meb-button-border-width: #{1rem / 16};
+  --meb-button-rounded: .5rem;
+  --meb-button-pill: 10000px;
+  --meb-button-padding-xs: .5rem 1rem;
+  --meb-button-padding-sm: .75rem 1.25rem;
+  --meb-button-padding-md: 1rem 1.5rem;
+  --meb-button-padding-lg: 1.25rem 1.75rem;
+  --meb-button-padding-xl: 1.5rem 2rem;
+  --meb-button-thick-border-width: .25rem;
+  --meb-button-outline-border-width: .125rem;
+  --meb-button-shadow: 0 .125rem .125rem rgba(0, 0, 0, .25), 0 .25rem .5rem rgba(0, 0, 0, .25);
+
+  // Image
+
+  --meb-image-shadow: 0 .125rem .125rem rgba(0, 0, 0, .25), 0 .25rem .5rem rgba(0, 0, 0, .25);
+  --meb-image-caption-font-size: .9rem;
+  --meb-image-caption-line-height: 1.35;
+  --meb-image-caption-gap: 1.25rem;
+
+  // Placeholder
+
+  --meb-image-placeholder-text: "No image";
+  --meb-image-placeholder-bg-color: #bbbbbb;
+  --meb-image-placeholder-border-color: #999999;
+  --meb-image-placeholder-color: #666666;
+  --meb-image-placeholder-font-size: inherit;
+  --meb-image-placeholder-line-height: 1;
+  --meb-image-placeholder-padding: 2rem;
+
+  // Container
+
+  --meb-container-shadow: 0 .125rem .125rem rgba(0, 0, 0, .25), 0 .25rem .5rem rgba(0, 0, 0, .25);
+}

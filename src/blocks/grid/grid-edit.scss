@@ -1,0 +1,20 @@
+@use '../../assets/scss/mixin' as *;
+@use '../../assets/scss/settings';
+
+.wp-block-my-extra-blocks-grid {
+  &__grid {
+    display: block;
+    > .block-editor-inner-blocks {
+      > .block-editor-block-list__layout {
+        display: grid;
+        gap: var(--gap-y) var(--gap-x);
+
+        @each $key, $value in settings.$screen-widths {
+          @include over(#{$key}) {
+            grid-template-columns: var(--columns-#{$key});
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,197 @@
+@use '../../assets/scss/mixin' as *;
+@use '../../assets/scss/settings';
+
+.wp-block-my-extra-blocks-image-with-text {
+
+  --image-col: auto;
+  --image-row: auto;
+  --text-col: auto;
+  --text-row: auto;
+
+  // Image position
+
+  &.is-meb-image-position-left {
+    // image
+    --image-row-position: 1 / 2;
+    --image-col-position: 1 / 2;
+    // text
+    --text-row-position: 1 / 2;
+    --text-col-position: 2 / 3;
+  }
+
+  &.is-meb-image-position-right {
+    // image
+    --image-row-position: 1 / 2;
+    --image-col-position: 2 / 3;
+    // text
+    --text-row-position: 1 / 2;
+    --text-col-position: 1 / 2;
+  }
+
+  // Auto height
+
+  &.is-meb-frame-auto-height {
+    --frame-height-value: auto;
+    --frame-vertical-ratio-value: 0;
+  }
+
+  &.is-not-meb-frame-auto-height {
+    --frame-height-value: 0;
+    --frame-vertical-ratio-value: var(--frame-vertical-ratio);
+  }
+
+  // Breakpoint
+
+  &.is-meb-breakpoint-no-break {
+    --grid-cols-left: auto;
+    --grid-cols-right: auto;
+  }
+
+  @each $key, $value in settings.$screen-widths {
+    &.is-meb-breakpoint-#{$key} {
+      @include over(#{$key}) {
+        --grid-cols-left: var(--frame-width) 1fr;
+        --grid-cols-right: 1fr var(--frame-width);
+        // image
+        --image-col: var(--image-col-position);
+        --image-row: var(--image-row-position);
+        // text
+        --text-col: var(--text-col-position);
+        --text-row: var(--text-row-position);
+      }
+
+      // Image height adjusted text
+
+      &.is-meb-image-height-adjusted-text.is-meb-alignment-stretch {
+        @include over(#{$key}) {
+          --frame-height-value: 100%;
+          --frame-vertical-ratio-value: 0;
+        }
+      }
+    }
+  }
+
+  // Children
+
+  &__container {
+    align-items: var(--alignment);
+    display: grid;
+    gap: var(--gap);
+
+    .is-meb-image-position-left & {
+      grid-template-columns: var(--grid-cols-left);
+    }
+
+    .is-meb-image-position-right & {
+      grid-template-columns: var(--grid-cols-right);
+    }
+  }
+
+  &__image-container {
+
+    // Image position
+
+    grid-column: var(--image-col);
+    grid-row: var(--image-row);
+  }
+
+  &__image-frame {
+    display: block;
+
+    .is-not-meb-frame-auto-height & {
+      height: var(--frame-height-value);
+      padding-top: var(--frame-vertical-ratio-value);
+      position: relative;
+      width: 100%;
+    }
+  }
+
+  &__placeholder {
+    background-color: var(--meb-image-placeholder-bg-color);
+    border: var(--meb-border-width-1) solid var(--meb-image-placeholder-border-color);
+    box-sizing: border-box;
+    color: var(--meb-image-placeholder-color);
+    display: block;
+    padding: var(--meb-image-placeholder-padding);
+
+    &::before {
+      align-items: center;
+      display: flex;
+      content: var(--meb-image-placeholder-text);
+      font-size: var( --meb-image-placeholder-font-size);
+      height: 100%;
+      justify-content: center;
+      line-height: var(--meb-image-placeholder-line-height);
+      width: 100%;
+    }
+
+    .is-not-meb-frame-auto-height & {
+      height: 100%;
+      left: 0;
+      object-fit: var(--frame-fit);
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+
+  &__image {
+    display: block;
+
+    .is-not-meb-frame-auto-height & {
+      height: 100%;
+      left: 0;
+      object-fit: var(--frame-fit);
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+
+  &__text-container {
+    box-sizing: border-box;
+
+    // Inner alignment
+
+    display: flex;
+    align-items: var(--inner-alignment);
+
+    &__inner {
+      width: 100%;
+    }
+
+    // Min height
+
+    min-height: var(--min-height);
+
+    // Image position
+
+    grid-column: var(--text-col);
+    grid-row: var(--text-row);
+
+    // Color
+
+    background-color: var(--bg-color);
+    color: var(--color);
+
+    // Border
+
+    border-color: var(--border-color);
+    border-style: var(--border-style);
+    border-width: var(--border-width);
+    border-radius: var(--border-radius);
+
+    // Padding
+
+    padding: var(--padding);
+  }
+
+  &:not(:root) {
+    border: 0;
+
+    // Margin
+
+    margin-top: var(--margin-top);
+    margin-bottom: var(--margin-bottom);
+  }
+}

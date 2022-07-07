@@ -1,0 +1,14 @@
+.wp-block-my-extra-blocks-data-list {
+  &__dl {
+    margin: 0;
+    padding: 0;
+  }
+
+  // Margin
+
+  &:not(:root) {
+    border-width: 0;
+    margin-top: var(--margin-top);
+    margin-bottom: var(--margin-bottom);
+  }
+}

@@ -1,0 +1,71 @@
+@use '../../assets/scss/settings';
+
+.wp-block-my-extra-blocks-svg {
+  --width-value: 100%;
+  --max-width-value: 100%;
+
+  &.is-meb-width-default {
+    --width-value: 100%;
+  }
+
+  &.is-meb-align {
+    &-left {
+      --margin-left: 0;
+      --margin-right: auto;
+    }
+
+    &-center {
+      --margin-left: auto;
+      --margin-right: auto;
+    }
+
+    &-right {
+      --margin-left: auto;
+      --margin-right: 0;
+    }
+  }
+
+  @each $key, $value in settings.$screen-widths {
+    &.is-meb-width-#{key} {
+      --width-value: var(--meb-screen-width-#{$key});
+      --max-width-value: var(--meb-screen-width-#{$key});
+    }
+  }
+
+  &.is-meb-width-custom {
+    --width-value: var(--custom-width);
+    --max-width-value: var(--custom-max-width);
+  }
+
+  &__frame {
+
+    display: block;
+    margin-left: var(--margin-left);
+    margin-right: var(--margin-right);
+
+    // Width
+
+    width: var(--width-value);
+    max-width: var(--max-width-value);
+
+    svg {
+      display: block;
+      height: auto;
+      max-width: 100%;
+      width: 100%;
+
+      .is-meb-svg-fill & {
+        fill: var(--fill);
+      }
+
+      .is-meb-svg-stroke & {
+        stroke: var(--stroke);
+      }
+    }
+  }
+
+  &:not(:root) {
+    margin-top: var(--margin-top);
+    margin-bottom: var(--margin-bottom);
+  }
+}

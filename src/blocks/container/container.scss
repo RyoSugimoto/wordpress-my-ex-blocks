@@ -1,0 +1,101 @@
+.wp-block-my-extra-blocks-container {
+
+  // Border
+
+  border-color: var(--border-color);
+  border-style: var(--border-style);
+  border-width: var(--border-width);
+  border-radius: var(--border-radius);
+
+  // Padding
+
+  padding: var(--padding);
+
+  // Box
+
+  box-sizing: var(--box-sizing);
+
+  &.is-meb-max-width {
+    &-default {
+      max-width: none;
+    }
+
+    &-xs {
+      max-width: var(--meb-screen-width-xs);
+    }
+
+    &-sm {
+      max-width: var(--meb-screen-width-sm);
+    }
+
+    &-md {
+      max-width: var(--meb-screen-width-md);
+    }
+
+    &-lg {
+      max-width: var(--meb-screen-width-lg);
+    }
+
+    &-xl {
+      max-width: var(--meb-screen-width-xl);
+    }
+
+    &-2xl {
+      max-width: var(--meb-screen-width-2xl);
+    }
+
+    &-custom {
+      max-width: var(--custom-max-width);
+    }
+  }
+
+  // Color scheme
+
+  background-color: var(--bg-color);
+  color: var(--color);
+
+  // Typography
+
+  font-family: var(--font-family);
+  font-feature-settings: var(--font-feature);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  line-height: var(--line-height);
+  letter-spacing: var(--letter-spacing);
+  text-align: var(--text-align);
+
+  // Background image & Effect/Gradient
+
+  background-image: var(--bg-image-url), var(--gradient);
+  background-repeat: var(--bg-image-repeat);
+  background-position: var(--bg-image-position);
+  background-size: var(--bg-image-size), auto;
+
+  // Effect
+
+  &.is-meb-has-shadow {
+    box-shadow: var(--meb-container-shadow);
+  }
+
+  &:not(:root) {
+    // Margin
+
+    margin-top: var(--margin-top);
+    margin-bottom: var(--margin-bottom);
+
+    // Box
+
+    &.is-meb-centered {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  // Position
+
+  &:not(:root) {
+    position: var(--position);
+    inset: var(--inset);
+    z-index: var(--z-index);
+  }
+}

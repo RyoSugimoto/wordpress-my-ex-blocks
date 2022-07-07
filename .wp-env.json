@@ -1,0 +1,27 @@
+{
+  "port": 9000,
+  "env": {
+    "tests": {
+      "port": 9001
+    }
+  },
+  "core": "https://wordpress.org/wordpress-6.0.zip",
+  "plugins": [
+    "./dist"
+  ],
+  "themes": [
+    "https://downloads.wordpress.org/theme/hello-elementor.2.5.0.zip"
+  ],
+  "mappings": {
+    "wp-content/plugins": "./wp-content/plugins",
+    "wp-content/themes": "./wp-content/themes",
+    "wp-content/uploads": "./wp-content/uploads"
+  },
+  "config": {
+    "upload_max_filesize": "128M",
+    "post_max_size": "128M",
+    "memory_limit": "256M",
+    "max_execution_time": "300",
+    "max_input_time": "300"
+  }
+}

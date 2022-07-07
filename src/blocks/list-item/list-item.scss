@@ -1,0 +1,44 @@
+.wp-block-my-extra-blocks-list-item {
+
+  position: relative;
+
+  &::marker {
+    color: var(--marker-color);
+  }
+
+  &__icon {
+    svg {
+      stroke: var(--marker-color);
+      height: 1.25em;
+      width: auto;
+    }
+  }
+
+  .is-meb-marker-outside &__icon {
+    left: -1.875em;
+    position: absolute;
+    top: calc(.5em * (var(--line-height, 1.5) - 1));
+  }
+
+  .is-meb-marker-inside &__icon {
+    display: inline-block;
+    height: 1em;
+    line-height: 1;
+    margin-right: .25em;
+    vertical-align: baseline;
+  }
+
+  .is-not-meb-icon-marker &__icon {
+    display: none;
+  }
+
+  &__content {
+    vertical-align: middle;
+  }
+
+  &:not(:root) {
+    & + & {
+      margin-top: var(--item-gap);
+    }
+  }
+}

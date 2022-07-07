@@ -1,0 +1,22 @@
+@use '../../assets/scss/mixin' as *;
+@use '../../assets/scss/settings';
+
+.wp-block-my-extra-blocks-grid {
+  &__grid {
+    display: grid;
+    gap: var(--gap-y) var(--gap-x);
+
+    @each $key, $value in settings.$screen-widths {
+      @include over(#{$key}) {
+        grid-template-columns: var(--columns-#{$key});
+      }
+    }
+  }
+
+  // Margin
+
+  &:not(:root) {
+    margin-top: var(--margin-top);
+    margin-bottom: var(--margin-bottom);
+  }
+}

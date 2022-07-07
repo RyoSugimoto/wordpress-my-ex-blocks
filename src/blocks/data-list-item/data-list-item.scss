@@ -1,0 +1,82 @@
+@use '../../assets/scss/mixin' as *;
+@use '../../assets/scss/settings';
+
+.wp-block-my-extra-blocks-data-list-item {
+  --grid-template-columns: var(--title-width) 1fr;
+  --grid-template-columns-default: auto;
+  --title-padding: 1.5rem 1rem;
+  --desc-padding: 1.5rem 1rem;
+  --meb-data-list-style-bar-desc-width: var(--meb-border-width-1);
+
+  display: grid;
+  gap: 0;
+
+  // Margin
+
+  &:not(:root) {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  // Gap
+
+  & + & {
+    margin-top: var(--gap);
+  }
+
+  // Breakpoints
+
+  @each $key, $value in settings.$screen-widths {
+    .is-meb-breakpoint-#{$key} & {
+      @include over($key) {
+        grid-template-columns: var(--grid-template-columns);
+        --meb-data-list-style-bar-desc-width: var(--meb-border-width-2);
+      }
+    }
+  }
+
+  .is-meb-breakpoint-none & {
+    grid-template-columns: var(--grid-template-columns-default);
+  }
+
+  // Style
+
+  & + & {
+    .is-meb-data-list-style-default &,
+    .is-meb-data-list-style-default-accent & {
+      border-top: var(--meb-border-width-1) solid var(--color-1);
+    }
+  }
+
+  dt {
+    .is-meb-data-list-style-default-accent &,
+    .is-meb-data-list-style-bar-accent & {
+      font-weight: var(--meb-font-weight-bold);
+    }
+
+    .is-meb-data-list-style-bar &,
+    .is-meb-data-list-style-bar-accent & {
+      border-top: var(--meb-border-width-2) solid var(--color-3);
+    }
+  }
+
+  dd {
+    .is-meb-data-list-style-bar &,
+    .is-meb-data-list-style-bar-accent & {
+      border-top: var(--meb-data-list-style-bar-desc-width) solid var(--color-2);
+    }
+  }
+
+  dt, dd {
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  dt {
+    padding: var(--title-padding);
+  }
+
+  dd {
+    padding: var(--desc-padding);
+  }
+}

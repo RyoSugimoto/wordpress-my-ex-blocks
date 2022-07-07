@@ -1,0 +1,34 @@
+@use '../../assets/scss/mixin' as *;
+@use '../../assets/scss/settings';
+
+.wp-block-my-extra-blocks-grid-item {
+
+  // Columns span
+
+  @each $key, $value in settings.$screen-widths {
+    @include over(#{$key}) {
+      grid-column-start: var(--col-start-#{$key});
+      grid-column-end: var(--col-end-#{$key});
+    }
+  }
+
+  // Padding
+
+  padding: var(--padding);
+
+  // Color
+
+  background-color: var(--bg-color);
+  color: var(--color);
+
+  // Border
+
+  border-color: var(--border-color);
+  border-style: var(--border-style);
+  border-width: var(--border-width);
+  border-radius: var(--border-radius);
+
+  &:not(:root) {
+    margin: 0;
+  }
+}

@@ -1,0 +1,48 @@
+.wp-block-my-extra-blocks-list {
+
+  &__list {
+    list-style-type: var(--list-marker);
+    list-style-position: var(--marker-position);
+
+    .is-meb-custom-marker & {
+      list-style-type: var(--custom-marker);
+    }
+
+    .is-meb-icon-marker & {
+      list-style-type: none;
+    }
+  }
+
+  // Padding
+
+  padding: var(--padding);
+
+  // Color scheme
+
+  background-color: var(--bg-color);
+  color: var(--color);
+
+  // Border
+
+  border-color: var(--border-color);
+  border-style: var(--border-style);
+  border-width: var(--border-width);
+  border-radius: var(--border-radius);
+
+  // Typography
+
+  font-family: var(--font-family);
+  font-feature-settings: var(--font-feature);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  line-height: var(--line-height);
+  letter-spacing: var(--letter-spacing);
+  text-align: var(--text-align);
+
+  // Margin
+
+  &:not(:root) {
+    margin-top: var(--margin-top);
+    margin-bottom: var(--margin-bottom);
+  }
+}

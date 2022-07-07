@@ -1,0 +1,27 @@
+.meb-component {
+
+  // Button
+
+  &-button-ui {
+    //
+  }
+
+  // Icon
+
+  &-icon-ui {
+    display: inline-block;
+    vertical-align: top;
+    svg {
+      display: block;
+      fill: var(--meb-icon-fill);
+      height: var(--meb-icon-height);
+      margin-left: auto;
+      margin-right: auto;
+      stroke: var(--meb-icon-stroke);
+      stroke-width: var(--meb-icon-stroke-width);
+      stroke-linecap: var(--meb-icon-stroke-linecap);
+      stroke-linejoin: var(--meb-icon-stroke-linejoin);
+      width: var(--meb-icon-width);
+    }
+  }
+}

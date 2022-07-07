@@ -1,0 +1,18 @@
+.wp-block-my-extra-blocks-list {
+  &__list {
+    > .block-editor-inner-blocks {
+      > .block-editor-block-list__layout {
+        list-style-type: var(--list-marker);
+        list-style-position: var(--marker-position);
+
+        .is-meb-custom-marker & {
+          list-style-type: var(--custom-marker);
+        }
+
+        .is-meb-icon-marker & {
+          list-style-type: none;
+        }
+      }
+    }
+  }
+}
