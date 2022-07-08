@@ -1,0 +1,10 @@
+.wp-block-my-extra-blocks-anchor {
+
+  display: block;
+  font-size: 0;
+  height: 0;
+
+  &:not(:root) {
+    margin: 0;
+  }
+}

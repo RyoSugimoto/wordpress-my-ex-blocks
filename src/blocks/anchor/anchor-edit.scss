@@ -1,0 +1,15 @@
+.wp-block-my-extra-blocks-anchor {
+
+  background-color: rgba(190, 220, 255, .75);
+  border: var(--meb-border-width-2) dashed currentColor;
+  color: #36c;
+  font-weight: var(--meb-font-weight-bold);
+  font-size: 1rem;
+  line-height: 1;
+  height: auto;
+  padding: .25rem;
+
+  &:not(:root) {
+    margin: var(--meb-space-4) 0;
+  }
+}

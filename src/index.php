@@ -120,3 +120,7 @@ include( plugin_dir_path( __FILE__ ) . 'blocks/grid-item/index.php' );
 // Image with text
 
 include( plugin_dir_path( __FILE__ ) . 'blocks/image-with-text/index.php' );
+
+// Anchor
+
+include( plugin_dir_path( __FILE__ ) . 'blocks/anchor/index.php' );
