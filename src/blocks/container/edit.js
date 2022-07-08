@@ -1,7 +1,8 @@
 import { useBlockProps, InspectorControls, BlockControls, InnerBlocks } from '@wordpress/block-editor'
-import { PanelBody } from '@wordpress/components'
+import { createElement } from '@wordpress/element'
+import { PanelBody, SelectControl } from '@wordpress/components'
 import { Stack, Row } from '../../components/layout'
-import { BorderControls, BorderRadiusControl, BorderWidthControl } from '../../components/border'
+import { BorderControls, BorderRadiusControl } from '../../components/border'
 import { SizeControls } from '../../components/size'
 import { PaddingControl } from '../../components/padding'
 import { ColorSchemeControls } from '../../components/color'
@@ -13,9 +14,15 @@ import { PositionControls } from '../../components/position'
 
 const blockName = 'wp-block-my-extra-blocks-container'
 
+const tagNameOptions = [
+  { value: 'div', label: 'div' },
+  { value: 'section', label: 'section' },
+]
+
 export default props => {
   const {
     attributes: {
+      tagName,
       // Padding
       padding,
       // Size
@@ -97,6 +104,22 @@ export default props => {
 
   const getInspectorControls = () => {
     return <InspectorControls key={`inspector-controls-${clientId}`}>
+      <PanelBody title="Basic settings" initialOpen={true}>
+        <Stack>
+          <Row>
+            <SelectControl
+              label="Tag name"
+              value={tagName}
+              options={tagNameOptions}
+              onChange={value => {
+                setAttributes({
+                  tagName: value
+                })
+              }}
+            />
+          </Row>
+        </Stack>
+      </PanelBody>
       <PanelBody title="Padding" initialOpen={false}>
         <Stack>
           <Row>
@@ -226,14 +249,22 @@ export default props => {
     </BlockControls>
   }
 
+  const Wrapper = (tagName, attributes, children) => createElement(
+    tagName,
+    attributes,
+    children
+  )
+
   return [
     getInspectorControls(),
     getBlockControls(),
-    <div
-      {...blockProps}
-      key={`block-${clientId}`}
-    >
+    Wrapper(
+      tagName,
+      {
+        ...blockProps,
+        key: `block-${clientId}`
+      },
       <InnerBlocks />
-    </div>
+    )
   ]
 }

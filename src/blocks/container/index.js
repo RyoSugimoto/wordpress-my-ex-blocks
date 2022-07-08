@@ -9,6 +9,10 @@ registerBlockType('my-extra-blocks/container', {
   icon: 'block-default',
   category: 'my-extra-blocks',
   attributes: {
+    tagName: {
+      type: 'string',
+      default: 'div'
+    },
     // Padding
     padding: {
       type: 'array',

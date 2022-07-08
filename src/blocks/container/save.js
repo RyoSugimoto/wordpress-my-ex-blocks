@@ -1,10 +1,12 @@
 import { useBlockProps, InnerBlocks } from '@wordpress/block-editor'
+import { createElement } from '@wordpress/element'
 
 const blockName = 'wp-block-my-extra-blocks-container'
 
 export default props => {
   const {
     attributes: {
+      tagName,
       // Padding
       padding,
       // Size
@@ -84,7 +86,16 @@ export default props => {
     }
   })
 
-  return <div {...blockProps}>
+  const Wrapper = (tagName, attributes, children) => createElement(
+    tagName,
+    attributes,
+    children
+  )
+
+  return Wrapper(
+    tagName, {
+      ...blockProps
+    },
     <InnerBlocks.Content />
-  </div>
+  )
 }
