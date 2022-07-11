@@ -42,6 +42,9 @@ function render_my_extra_blocks_post_card(
   <?php
     global $post;
     $the_post = get_post( $attributes['postId'] );
+    if ( !$the_post || $the_post->post_status !== 'publish' ) {
+      return '<div class="wp-block-my-extra-blocks-post-card__not-found">The post is not found.</div>';
+    }
     $post = $the_post;
     setup_postdata( $post );
   ?>
