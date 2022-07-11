@@ -130,7 +130,7 @@ function render_my_extra_blocks_post_card(
 
         <?php if ( $has_button_link ): ?>
           <div class="wp-block-my-extra-blocks-post-card__more">
-            <a href="<?php the_permalink(); ?>"><?php echo ($attribute['buttonText'] ? : 'Read more') ?></a>
+            <a href="<?php the_permalink(); ?>"><?php echo ($attributes['buttonText'] ? : 'Read more') ?></a>
           </div>
         <?php endif; ?>
 
