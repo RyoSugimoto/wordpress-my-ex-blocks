@@ -124,3 +124,7 @@ include( plugin_dir_path( __FILE__ ) . 'blocks/image-with-text/index.php' );
 // Anchor
 
 include( plugin_dir_path( __FILE__ ) . 'blocks/anchor/index.php' );
+
+// Post card
+
+include( plugin_dir_path( __FILE__ ) . 'blocks/post-card/index.php' );

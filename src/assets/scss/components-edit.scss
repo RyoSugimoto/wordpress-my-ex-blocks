@@ -1,0 +1,133 @@
+@use './mixin' as *;
+
+.meb-component {
+
+  // PostList
+
+  &-post-list {
+    border: var(--meb-border-width-1) solid #333333;
+    box-sizing: border-box;
+    font-size: .9rem;
+    height: var(--height, 16rem);
+    overflow-y: scroll;
+    width: 100%;
+    word-break: break-word;
+
+    &__form {
+
+    }
+
+    &__list {
+      list-style: none;
+      line-height: 1.5;
+      margin: 0;
+      padding: 0;
+    }
+
+    &__item {
+      margin: 0;
+      padding: 0;
+
+      & + & {
+        border-top: var(--meb-border-width-1) dotted #999999;
+      }
+    }
+
+    &__label {
+      display: block;
+      padding: .25rem;
+
+      &.is-meb-checked {
+        background-color: #357;
+        color: #ffffff;
+      }
+    }
+
+    &__checker {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &__id {
+      background: #eeeeee;
+      border: var(--meb-border-width-1) solid #aaaaaa;
+      border-radius: .125rem;
+      color: #888888;
+      display: inline-block;
+      font-size: 75%;
+      font-weight: var(--meb-font-weight-bold);
+      line-height: 1;
+      margin: 0 .25rem .125rem 0;
+      text-align: center;
+      padding: .125rem;
+      vertical-align: middle;
+    }
+
+    &__title {
+      display: inline;
+      vertical-align: middle;
+    }
+  }
+
+  // MultipleValuesControl
+
+  &-multiple-values-control {
+    margin: 0 0 .5rem;
+
+    &__input {
+      align-items: center;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: .125rem;
+
+      .components-base-control,
+      .components-base-control__field {
+        margin: 0 !important;
+      }
+
+      button {
+        cursor: pointer;
+      }
+    }
+
+    &__tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      margin: .125rem 0 0;
+      padding: 0;
+    }
+
+    &__tag-item {
+      background: #eeeeee;
+      border-radius: .25rem;
+      border: var(--meb-border-width-1) solid #aaaaaa;
+      display: inline-block;
+      line-height: 1;
+      margin: .125rem;
+      padding: .25em;
+      text-align: center;
+
+      & > * {
+        vertical-align: middle;
+      }
+
+      button {
+        background: #000000;
+        border-radius: 10000px;
+        border: 0;
+        box-sizing: content-box;
+        color: #ffffff !important;
+        cursor: pointer;
+        display: inline-block;
+        font-size: .85rem;
+        font-weight: bold;
+        height: 1em;
+        margin: 0 0 0 .125rem;
+        text-align: center;
+        padding: .125rem;
+        width: 1em;
+      }
+    }
+  }
+}

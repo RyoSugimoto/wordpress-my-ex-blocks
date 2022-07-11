@@ -130,7 +130,53 @@
   --meb-image-placeholder-line-height: 1;
   --meb-image-placeholder-padding: 2rem;
 
+  // Term
+
+  --meb-term-item-parent-line-height: 1.25;
+  --meb-term-item-bg-color: transparent;
+  --meb-term-item-color: #999999;
+  --meb-term-item-border: var(--meb-border-width-1) solid currentColor;
+  --meb-term-item-font-size: .75rem;
+  --meb-term-item-font-weight: var(--meb-font-weight-normal);
+  --meb-term-item-padding: .35em .5em;
+
+  // Read more link
+
+  --meb-more-bg-color: transparent;
+  --meb-more-border: var(--meb-border-width-1) solid currentColor;
+  --meb-more-radius: 10000px;
+  --meb-more-color: inherit;
+  --meb-more-display: inline-block;
+  --meb-more-font-size: .9rem;
+  --meb-more-font-weight: inherit;
+  --meb-more-line-height: 1.125;
+  --meb-more-padding: .35em 1em;
+  --meb-more-text-align: center;
+  --meb-more-decoration: revert;
+
   // Container
 
   --meb-container-shadow: 0 .125rem .125rem rgba(0, 0, 0, .25), 0 .25rem .5rem rgba(0, 0, 0, .25);
+
+  // Post card
+
+  --meb-post-card-padding: 1rem;
+  --meb-post-card-bg-color: #fefefe;
+  --meb-post-card-border: var(--meb-border-width-1) solid #ddd;
+  --meb-post-card-radius: .25rem;
+  --meb-post-card-align-items: stretch;
+  --meb-post-card-columns: var(--meb-post-card-thumbnail-width) 1fr;
+  --meb-post-card-column-gap: 1rem;
+  --meb-post-card-thumbnail-width: 10rem;
+  --meb-post-card-thumbnail-vertical-ratio: 100%;
+  --meb-post-card-thumbnail-vertical-ratio-narrow: 55%;
+  --meb-post-card-content-padding: 0;
+  --meb-post-card-content-gap: .75rem;
+  --meb-post-card-font-size: 1rem;
+  --meb-post-card-line-height: 1.5;
+  --meb-post-card-title-font-size: 1.25rem;
+  --meb-post-card-title-font-weight: var(--meb-font-weight-bold);
+  --meb-post-card-title-line-height: 1.5;
+  --meb-post-card-date-font-size: .85rem;
+  --meb-post-card-date-color: #999999;
 }

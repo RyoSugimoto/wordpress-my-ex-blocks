@@ -1,0 +1,167 @@
+@use '../../assets/scss/mixin' as *;
+@use '../../assets/scss/settings';
+
+.wp-block-my-extra-blocks-post-card {
+
+  --meb-post-card-columns-value: auto;
+  --meb-post-card-thumbnail-vertical-ratio-value: var(--meb-post-card-thumbnail-vertical-ratio-narrow);
+
+  &.is-meb-breakpoint-all-break {
+    --meb-post-card-columns-value: var(--meb-post-card-columns);
+    --meb-post-card-thumbnail-vertical-ratio-value: var(--meb-post-card-thumbnail-vertical-ratio);
+  }
+
+  @each $key, $value in settings.$screen-widths {
+    &.is-meb-breakpoint-#{$key} {
+      @include over(#{$key}) {
+        --meb-post-card-columns-value: var(--meb-post-card-columns);
+        --meb-post-card-thumbnail-vertical-ratio-value: var(--meb-post-card-thumbnail-vertical-ratio);
+      }
+    }
+  }
+
+  &.is-meb-post-card-button-style {
+    &-default {
+
+    }
+  }
+
+  &__container {
+    align-items: var(--meb-post-card-align-items);
+    background-color: var(--meb-post-card-bg-color);
+    border: var(--meb-post-card-border);
+    border-radius: var(--meb-post-card-radius);
+    display: grid;
+    grid-template-columns: var(--meb-post-card-columns-value);
+    gap: var(--meb-post-card-column-gap);
+    padding: var(--meb-post-card-padding);
+    position: relative;
+  }
+
+  &__link {
+    color: inherit;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    text-decoration: inherit;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+  }
+
+  &__eye-catch {
+    z-index: 0;
+  }
+
+  &__frame {
+    display: block;
+    height: 0;
+    padding-top: var(--meb-post-card-thumbnail-vertical-ratio-value);
+    position: relative;
+
+    img, span {
+      display: block;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+    // Placeholder
+
+    span {
+      align-items: center;
+      background-color: var(--meb-image-placeholder-bg-color);
+      color: var(--meb-image-placeholder-color);
+      display: flex;
+      justify-content: center;
+
+      &::before {
+        content: var(--meb-image-placeholder-text);
+        font-size: var(--meb-image-placeholder-font-size);
+        line-height: var(--meb-image-placeholder-line-height);
+      }
+    }
+
+    // Thumbnail
+
+    img {
+      object-fit: cover;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: calc(var(--meb-post-card-content-gap) / -2) 0;
+    padding: var(--meb-post-card-content-padding);
+
+    > * {
+      margin: calc(var(--meb-post-card-content-gap) / 2) 0;
+    }
+  }
+
+  &__title {
+    font-size: var(--meb-post-card-title-font-size);
+    font-weight: var(--meb-post-card-title-font-weight);
+    line-height: var(--meb-post-card-title-line-height);
+    padding: 0;
+  }
+
+  &__taxonomy-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+  }
+
+  &__taxonomy-term {
+    margin: 0 .125em 0 0;
+    line-height: var(--meb-term-item-parent-line-height);
+    padding: 0;
+    span, a {
+      background-color: var(--meb-term-item-bg-color);
+      border: var(--meb-term-item-border);
+      color: var(--meb-term-item-color);
+      display: inline-block;
+      font-size: var(--meb-term-item-font-size);
+      font-weight: var(--meb-term-item-font-weight);
+      line-height: 1;
+      padding: var(--meb-term-item-padding);
+      text-align: center;
+      text-decoration: none;
+    }
+  }
+
+  &__more {
+    text-align: left;
+    a {
+      background-color: var(--meb-more-bg-color);
+      border: var(--meb-more-border);
+      border-radius: var(--meb-more-radius);
+      color: var(--meb-more-color);
+      display: var(--meb-more-display);
+      font-size: var(--meb-more-font-size);
+      font-weight: var(--meb-more-font-weight);
+      line-height: var(--meb-more-line-height);
+      padding: var(--meb-more-padding);
+      text-align: var(--meb-more-text-align);
+      text-decoration: var(--meb-more-decoration);
+    }
+  }
+
+  &__date {
+    font-size: var(--meb-post-card-date-font-size);
+    line-height: 1;
+    color: var(--meb-post-card-date-color);
+  }
+
+  &:not(:root) {
+    margin-top: var(--margin-top);
+    margin-bottom: var(--margin-bottom);
+  }
+}

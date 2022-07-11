@@ -1,5 +1,8 @@
+@use './assets/scss/components-edit';
+
 // Blocks
 
 @use './blocks/list/list-edit';
 @use './blocks/grid/grid-edit';
 @use './blocks/anchor/anchor-edit';
+@use './blocks/post-card/post-card-edit';
