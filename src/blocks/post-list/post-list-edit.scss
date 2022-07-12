@@ -1,0 +1,9 @@
+.wp-block-my-extra-blocks-post-card {
+
+  &__link {
+    display: none;
+  }
+
+  &:not(:root) {
+  }
+}

@@ -3,9 +3,11 @@ import { TextControl, Button } from '@wordpress/components'
 
 export const PostList = props => {
   const {
+    label,
     posts,
     checked,
     isMultiple,
+    showId,
     height,
     onChange,
   } = props
@@ -43,10 +45,16 @@ export const PostList = props => {
     return 0
   }
 
-  return <div className={componentName} style={{
-    '--height': height || '16rem'
-  }}>
-    <ul className={`${componentName}__list`}>
+  return <div className={componentName} >
+    {label &&
+      <div style={{marginBottom: '.5rem'}}>{label}</div>
+    }
+    <ul
+      className={`${componentName}__list`}
+      style={{
+        '--height': height || '16rem'
+      }}
+    >
       {posts.map((item, index) => {
         return <li
           key={index}
@@ -79,8 +87,12 @@ export const PostList = props => {
                 }}
               />
             </span>
-            <span className={`${componentName}__id`}>{item.id}</span>
-            <span className={`${componentName}__title`}>{item.title.rendered}</span>
+            {showId &&
+              <span className={`${componentName}__id`}>{item.id}</span>
+            }
+            <span className={`${componentName}__title`}>
+              {item.title ? item.title.rendered : item.name }
+            </span>
           </label>
         </li>
       })}

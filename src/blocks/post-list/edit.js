@@ -2,12 +2,21 @@ import { useBlockProps, InspectorControls, BlockControls } from '@wordpress/bloc
 import { useState, useEffect, Fragment } from '@wordpress/element'
 import { resolveSelect } from '@wordpress/data'
 import { ServerSideRender } from '@wordpress/editor'
-import { PanelBody, SelectControl, TextControl, ToggleControl, RangeControl } from '@wordpress/components'
+import { PanelBody, SelectControl, TextControl, ToggleControl, RangeControl, __experimentalRadio as Radio, __experimentalRadioGroup as RadioGroup } from '@wordpress/components'
 import { Stack, Row, Spacer } from '../../components/layout'
 import { PostList, MultipleValuesControl, CheckListControl } from '../../components/data'
 import { MarginControls } from '../../components/margin'
 
 const blockName = 'wp-block-my-extra-blocks-post-card'
+
+const breakpoints = [
+  { label: 'XS', key: 'xs' },
+  { label: 'S', key: 'sm' },
+  { label: 'M', key: 'md' },
+  { label: 'L', key: 'lg' },
+  { label: 'XL', key: 'xl' },
+  { label: '2XL', key: '2xl' },
+]
 
 const breakpointOptions = [
   { label: 'XS', value: 'xs' },
@@ -26,9 +35,9 @@ const getPostTypes = () => {
   })
 }
 
-const getPosts = (postTypeSlug, perPage = -1) => {
-  return resolveSelect('core').getEntityRecords('postType', postTypeSlug, {
-    per_page: perPage
+const getTerms = slug => {
+  return resolveSelect('core').getEntityRecords('taxonomy', slug, {
+    per_page: -1,
   })
 }
 
@@ -49,8 +58,16 @@ const buttonStyleOptions = [
 export default props => {
   const {
     attributes: {
+      // Grid
+      columns,
+      gapX,
+      gapY,
+      // Post
+      perPage,
       postType,
-      postId,
+      taxQueryRelation,
+      taxQueryTax,
+      taxQueryTerms,
       taxonomies,
       linkType,
       hasDate,
@@ -75,10 +92,8 @@ export default props => {
   })
 
   const [postTypes, setPostTypes] = useState([])
-  const [posts, setPosts] = useState([])
   const [taxList, setTaxList] = useState([])
-  const [filteredPosts, setFilteredPosts] = useState([])
-  const [postFilterValue, setPostFilterValue] = useState('')
+  const [termList, setTermList] = useState([])
 
   if (!metaFields instanceof Array) {
     setAttributes({
@@ -93,15 +108,13 @@ export default props => {
   const initialize = async() => {
     const postTypesData = await getPostTypes()
     setPostTypes(postTypesData)
-    const postsData = await getPosts(postType, -1)
-    setPosts(postsData)
-    setFilteredPosts(postsData)
-
     const currentPostType = getPostTypeFromSlug(postType, postTypesData)
-
     if (currentPostType) {
       setTaxList(currentPostType.taxonomies)
     }
+
+    const terms = await getTerms(taxQueryTax)
+    setTermList(terms || [])
   }
 
   useEffect(() => {
@@ -127,53 +140,132 @@ export default props => {
                   postType: value
                 })
                 const newPosts = await getPosts(value, -1)
-                setPosts(newPosts)
-                setFilteredPosts(newPosts)
+                setPosts(newPosts || [])
+                setFilteredPosts(newPosts || [])
                 setPostFilterValue('')
                 setTaxList(getPostTypeFromSlug(value, postTypes).taxonomies)
               }}
             />
           </Row>
           <Row>
-            <Stack title="Post">
-              <Row>
-                <TextControl
-                  placeholder="Filter posts by title or ID"
-                  type="search"
-                  value={postFilterValue}
+            <RangeControl
+              label="Per page (Max number of items)"
+              value={perPage}
+              min={1} max={100} step={1}
+              onChange={value => {
+                setAttributes({
+                  perPage: value
+                })
+              }}
+            />
+          </Row>
+          <Row>
+            <SelectControl
+              label="Tax query"
+              value={taxQueryTax}
+              options={
+                [{ value: '', label: 'No query' }].concat(taxList.map(item => {
+                  return { value: item, label: item }
+                }))
+              }
+              onChange={async(value) => {
+                setAttributes({
+                  taxQueryTax: value,
+                  taxQueryTerms: []
+                })
+                const terms = await getTerms(value)
+                setTermList(terms || [])
+              }}
+            />
+          </Row>
+          {(taxQueryTax !== '' && termList.length > 0) &&
+            <Row title="Terms">
+              <RadioGroup
+                label="Search mode"
+                checked={taxQueryRelation}
+                onChange={value => {
+                  setAttributes({
+                    taxQueryRelation: value
+                  })
+                }}
+              >
+                <Radio value="IN">OR</Radio>
+                <Radio value="AND">AND</Radio>
+              </RadioGroup>
+              <Spacer size=".5rem" />
+              <PostList
+                posts={termList}
+                checked={taxQueryTerms}
+                isMultiple={true}
+                onChange={value => {
+                  setAttributes({
+                    taxQueryTerms: value
+                  })
+                }}
+              />
+              {taxQueryTerms.length &&
+                <Fragment>
+                  <Spacer size=".5rem" />
+                  <div>
+                    Selected: {termList.filter(item => {
+                      return taxQueryTerms.indexOf(item.id) !== -1
+                    }).map((item, index) => {
+                      return item.name
+                    }).join(', ')}
+                  </div>
+                </Fragment>
+              }
+            </Row>
+          }
+        </Stack>
+        <Spacer size=".5rem" />
+      </PanelBody>
+      <PanelBody title="Grid">
+        <Stack>
+          <Row>
+            <RangeControl
+              label="Gap X"
+              value={gapX}
+              min={1} max={50} step={1}
+              onChange={value => {
+                setAttributes({
+                  gapX: value
+                })
+              }}
+            />
+          </Row>
+          <Row>
+            <RangeControl
+              label="Gap Y"
+              value={gapY}
+              min={1} max={50} step={1}
+              onChange={value => {
+                setAttributes({
+                  gapY: value
+                })
+              }}
+            />
+          </Row>
+          <Row title="Columns">
+            <table style={{width: '100%'}}>
+              <thead><tr><th>Viewport</th><th>Columns</th></tr></thead>
+              <tbody>{breakpoints.map(({label, key}, index) => {
+                return <tr key={index}><td>{label}</td>
+                <td><RangeControl
+                  label={label}
+                  hideLabelFromVision
+                  value={columns[index]}
+                  min={1} max={12} step={1}
                   onChange={value => {
-                    setPostFilterValue(value)
-                    if ( value === '' ) {
-                      setFilteredPosts(posts)
-                    } else {
-                      const filteredItems = posts.filter(item => {
-                        return !!item.title.rendered.match(value) || item.id === parseInt(value)
-                      })
-                      setFilteredPosts(filteredItems)
-                    }
-                  }}
-                />
-              </Row>
-              <Row>
-                <PostList
-                  posts={filteredPosts}
-                  checked={postId}
-                  isMultiple={false}
-                  height="15rem"
-                  onChange={value => {
-                    if (value instanceof Array) {
-                      if (postId.join(',') === value.join(',')) return
-                    } else {
-                      if (postId === value) return
-                    }
+                    const newValue = columns.concat()
+                    newValue[index] = value
                     setAttributes({
-                      postId: value
+                      columns: newValue
                     })
                   }}
-                />
-              </Row>
-            </Stack>
-            <Spacer size=".5rem" />
+                /></td></tr>
+              })}</tbody>
+            </table>
           </Row>
         </Stack>
       </PanelBody>
@@ -331,8 +423,16 @@ export default props => {
       <ServerSideRender
         block={props.name}
         attributes={{
+          // Grid
+          columns,
+          gapX,
+          gapY,
+          // Post
+          perPage,
           postType,
-          postId,
+          taxQueryRelation,
+          taxQueryTax,
+          taxQueryTerms,
           taxonomies,
           linkType,
           hasDate,

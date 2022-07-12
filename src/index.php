@@ -128,3 +128,7 @@ include( plugin_dir_path( __FILE__ ) . 'blocks/anchor/index.php' );
 // Post card
 
 include( plugin_dir_path( __FILE__ ) . 'blocks/post-card/index.php' );
+
+// Post list
+
+include( plugin_dir_path( __FILE__ ) . 'blocks/post-list/index.php' );
