@@ -7,7 +7,7 @@
   },
   "core": "https://wordpress.org/wordpress-6.0.zip",
   "plugins": [
-    "./dist"
+    "./my-extra-blocks"
   ],
   "themes": [
     "https://downloads.wordpress.org/theme/hello-elementor.2.5.0.zip"

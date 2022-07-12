@@ -2,7 +2,7 @@ const path = require('path')
 const WpDefaultConfig = require('@wordpress/scripts/config/webpack.config')
 
 const srcDir = path.resolve(__dirname, 'src')
-const buildDir = path.resolve(__dirname, 'dist')
+const buildDir = path.resolve(__dirname, 'my-extra-blocks')
 const scriptName = 'my-extra-blocks'
 const frontScriptName = 'my-extra-blocks-front'
 
